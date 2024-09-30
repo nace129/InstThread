@@ -1,0 +1,40 @@
+<!-- Monesh -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstThread</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>InstThread</h1>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="content">Enter status update:</label>
+                <input type="text" class="form-control" name="content" required>
+            </div>
+            <button type="submit" name="post" class="btn btn-primary">Post</button>
+            <button type="submit" name="retrieve" class="btn btn-secondary">Retrieve</button>
+            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+        </form>
+
+        {% if post_content %}
+            <div class="mt-4">
+                <h3>Retrieved Status:</h3>
+                <p>{{ post_content }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
